@@ -1,0 +1,32 @@
+body {
+  background-color: #eaf6f6;
+}
+
+hr {
+  border-style: dotted none none;
+  border-width: 5px;
+  width: 10%;
+}
+
+h1,
+h3 {
+  color: #0d8686;
+}
+
+img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  filter: blur(4px);
+  transition: 150ms;
+  vertical-align: middle;
+}
+
+img:hover {
+  filter: none;
+}
+
+.profile-img {
+  overflow: hidden;
+  border-radius: 50%;
+}
