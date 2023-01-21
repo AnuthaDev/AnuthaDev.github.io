@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script>
+		let diya = "X"
+		let aditya = "O"
+		let delta = null
+		var monica = [
+			[null, null, null],
+			[null, null, null],
+			[null, null, null],
+		];
+		var truth = false
+		var infotxt
+		window.onload = function () {
+			var puzzleArea = document.getElementById("container");
+			infotxt = document.getElementById("info")
+			tukda = puzzleArea.getElementsByTagName("div");
+			for (var i = 0; i < tukda.length; i++) {
+				// Used to position each puzzle piece
+				var tmpwidth = tukda[i].offsetWidth;
+				tukda[i].innerHTML = monica[~~(i / 3)][i % 3];
+				tukda[i].style.marginLeft = (i % 3) * (tmpwidth) + "px";
+				tukda[i].style.marginTop = ~~(i / 3) * (tmpwidth) + "px";
+				tukda[i].onmouseover = function () {
+					// If a piece can be moved, change its style
+					if (this.innerHTML != diya && this.innerHTML != aditya) {
+						this.style.backgroundColor = "#78c078";
+						this.style.cursor = "pointer";
+					}
+				};
+				tukda[i].onmouseout = function () {
+					// Reset piece style when mouse exits
+					this.style.cursor = "default";
+					this.style.backgroundColor = "#9ae09a";
+				};
+
+
+				tukda[i].onclick = function () {
+					if (this.innerHTML != diya && this.innerHTML != aditya && !truth) {
+						this.innerHTML = diya;
+						truth = true
+						infotxt.innerHTML = "Computer is thinking"
+
+						monica[~~(this.id / 3)][this.id % 3] = diya;
+
+						setTimeout(this_one_for_ahlawat, 1000);
+
+						// You cant win, lmao
+						// if (winner(grid) == X) {
+						// 	alert("You Win! Reload Page to play again")
+						// } else
+					}
+				};
+			}
+		}
+
+		function source_padhega_lol(koi_parameter_hoga) {
+			var yeh_variable_hai = 0
+			var yeh_bhi_variable_hai = 0
+
+			for (let i = 0; i < 3; i++) {
+				for (let j = 0; j < 3; j++)
+					if (koi_parameter_hoga[i][j] == diya) {
+						yeh_variable_hai += 1
+					}
+					else if (koi_parameter_hoga[i][j] == aditya) {
+						yeh_bhi_variable_hai += 1
+					}
+			}
+
+			if (yeh_variable_hai > yeh_bhi_variable_hai) {
+				return aditya
+			}
+			else {
+				return diya
+			}
+		}
+
+		function bhai_jaa_na(kyun_padh_raha_hai_code) {
+			let hulululu = new Set();
+			for (let i = 0; i < 3; i++) {
+				for (let j = 0; j < 3; j++) {
+					if (kyun_padh_raha_hai_code[i][j] == null) {
+						hulululu.add([i, j])
+					}
+				}
+			}
+			return hulululu
+		}
+
+		function kuch_nahi_milega(saaman, maut) {
+			var ram_ram_bhai = structuredClone(saaman)
+			ram_ram_bhai[maut[0]][maut[1]] = source_padhega_lol(saaman)
+			return ram_ram_bhai
+		}
+
+		function kush_bhai_hecking_chhod_de(goyal) {
+
+			if (goyal[0][0] == goyal[1][1] && goyal[1][1] == goyal[2][2] && goyal[0][0] != delta)
+				return goyal[0][0];
+			else if (goyal[0][2] == goyal[1][1] && goyal[1][1] == goyal[2][0] && goyal[0][2] != delta)
+				return goyal[0][2];
+
+			//Check Rows
+			else if (goyal[0][0] == goyal[0][1] && goyal[0][1] == goyal[0][2] && goyal[0][0] != delta)
+				return goyal[0][0]
+			else if (goyal[1][0] == goyal[1][1] && goyal[1][1] == goyal[1][2] && goyal[1][0] != delta)
+				return goyal[1][0]
+			else if (goyal[2][0] == goyal[2][1] && goyal[2][1] == goyal[2][2] && goyal[2][0] != delta)
+				return goyal[2][0]
+
+			//Check Columns
+			else if (goyal[0][0] == goyal[1][0] && goyal[1][0] == goyal[2][0] && goyal[0][0] != delta)
+				return goyal[0][0]
+			else if (goyal[0][1] == goyal[1][1] && goyal[1][1] == goyal[2][1] && goyal[0][1] != delta)
+				return goyal[0][1]
+			else if (goyal[0][2] == goyal[1][2] && goyal[1][2] == goyal[2][2] && goyal[0][2] != delta)
+				return goyal[0][2]
+
+			return null
+		}
+
+
+		function nahi_dikhara_source(obfuscated) {
+			if (hello_miglani(obfuscated)) {
+				if (kush_bhai_hecking_chhod_de(obfuscated) == diya)
+					return 1
+				else if (kush_bhai_hecking_chhod_de(obfuscated) == aditya)
+					return -1
+			}
+			return 0
+		}
+
+		function hello_miglani(ayush) {
+			if (kush_bhai_hecking_chhod_de(ayush) != null) {
+				return true
+			}
+			for (let i = 0; i < 3; i++) {
+				for (let j = 0; j < 3; j++) {
+					if (ayush[i][j] == delta) {
+						return false
+					}
+				}
+			}
+			return true
+		}
+
+
+
+		function code_churana_galat_baat(bangalore) {
+			if (hello_miglani(bangalore)) {
+				return null
+			} else {
+				if (source_padhega_lol(bangalore) == diya) {
+					let bye = wassup_kittu(bangalore);
+					return bye[1];
+				} else {
+					let bye = yeh_rakhi_ke_naam(bangalore)
+					return bye[1]
+				}
+			}
+		}
+		function wassup_kittu(ouija) {
+			if (hello_miglani(ouija)) {
+				return [nahi_dikhara_source(ouija), null]
+			}
+
+			let v = -10
+			let nasa = null
+			for (const dhoom_machale of bhai_jaa_na(ouija)) {
+				tmp = yeh_rakhi_ke_naam(kuch_nahi_milega(ouija, dhoom_machale))
+				end_sem = tmp[0]
+				if (end_sem > v) {
+					v = end_sem;
+					nasa = dhoom_machale
+					if (v == 1) {
+						return [v, nasa]
+					}
+				}
+			}
+
+			return [v, nasa]
+		}
+
+		function yeh_rakhi_ke_naam(mukesh) {
+			if (hello_miglani(mukesh)) {
+				return [nahi_dikhara_source(mukesh), null]
+			}
+
+			let v = 10
+			let buri_nazar_wale_tera_muh_kala = null
+			for (const action of bhai_jaa_na(mukesh)) {
+				bhai = wassup_kittu(kuch_nahi_milega(mukesh, action))
+				tmpval = bhai[0]
+				if (tmpval < v) {
+					v = tmpval;
+					buri_nazar_wale_tera_muh_kala = action
+					if (v == -1) {
+						return [v, buri_nazar_wale_tera_muh_kala]
+					}
+				}
+			}
+
+			return [v, buri_nazar_wale_tera_muh_kala]
+		}
+
+
+		function this_one_for_ahlawat() {
+			truth = false
+			let ayush_ki_bandi = code_churana_galat_baat(monica)
+			if (ayush_ki_bandi != null) {
+				let i = ayush_ki_bandi[0]
+				let j = ayush_ki_bandi[1]
+				document.getElementById(i * 3 + j).innerHTML = aditya;
+				monica[i][j] = aditya
+			}
+			
+			if (kush_bhai_hecking_chhod_de(monica) == aditya) {
+				setTimeout(function(){alert("You Lose!! Reload Page to play again")}, 100)
+			} else if (hello_miglani(monica)) {
+				setTimeout(function(){alert("Its a TIE! Reload Page to play again")}, 100)
+			}
+			infotxt.innerHTML = "Your turn"
+		}
+
+
+	</script>
+	<style>
+		.cell {
+			background-color: #9ae09a;
+			position: absolute;
+			user-select: none;
+			transition: 100ms;
+			font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, sans-serif;
+			font-size: 3em;
+			border: 5px dotted black;
+			width: 25vw;
+			height: 25vw;
+			max-width: 100px;
+			max-height: 100px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+	</style>
+
+</head>
+
+<body>
+	<p id="info"
+		style="text-align: center;font-size: 3em;font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, sans-serif;">
+		Your Turn</p>
+	<div id="container" style="margin: auto; max-width: 300px; margin-top: 15vh;">
+		<div class="cell" id="0" style="border-top:5px solid white;border-left:5px solid white;"></div>
+		<div class="cell" id="1" style="border-top:5px solid white;"></div>
+		<div class="cell" id="2" style="border-top:5px solid white;border-right:5px solid white;"></div>
+		<div class="cell" id="3" style="border-left:5px solid white;"></div>
+		<div class="cell" id="4"></div>
+		<div class="cell" id="5" style="border-right:5px solid white;"></div>
+		<div class="cell" id="6" style="border-bottom:5px solid white;border-left:5px solid white;"></div>
+		<div class="cell" id="7" style="border-bottom:5px solid white;"></div>
+		<div class="cell" id="8" style="border-bottom:5px solid white;border-right:5px solid white;"></div>
+	</div>
+</body>
+
+</html>
